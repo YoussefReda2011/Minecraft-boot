@@ -1,7 +1,7 @@
 const mineflayer = require('mineflayer');
 
 const serverConfig = {
-    host: 'cubelife.qzz.io',
+    host: 'crack.restcraft.net',
     port: 25565,
     username: 'youssef_gaming',
     version: '1.21.11'
