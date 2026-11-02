@@ -1,0 +1,12 @@
+{
+  "name": "minecraft-bot",
+  "version": "1.0.0",
+  "description": "Minecraft bot with auto-login and infinite reconnect capabilities",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "mineflayer": "^4.22.0"
+  }
+}
