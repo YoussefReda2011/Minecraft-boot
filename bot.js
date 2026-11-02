@@ -1,10 +1,10 @@
 const mineflayer = require('mineflayer');
 
 const serverConfig = {
-    host: 'اكتب_الايبى_هنا',
+    host: 'cubelife.qzz.io',
     port: 25565,
-    username: 'اكتب_اسم_البوت_هنا',
-    version: '1.21.1'
+    username: 'youssef_gaming',
+    version: '1.21.11'
 };
 
 function createBot() {
@@ -15,7 +15,7 @@ function createBot() {
         console.log('تم دخول البوت إلى السيرفر بنجاح!');
         
         setTimeout(() => {
-            bot.chat('/login soha123$$$');
+            bot.chat('/login youssef123$$$');
             console.log('تم إرسال أمر تسجيل الدخول');
         }, 3000);
     });
