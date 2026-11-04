@@ -2,16 +2,16 @@ const mineflayer = require('mineflayer');
 
 function createBot() {
   const bot = mineflayer.createBot({
-    host: 'crack.restcraft.net',
+    host: 'cubelife.qzz.io',
     port: 25565,
-    username: 'Soha_Bot',
+    username: 'youssef_gaming',
     version: false
   });
 
   bot.on('spawn', () => {
     setTimeout(() => {
-      bot.chat('/login soha123$$$');
-    }, 2000);
+      bot.chat('/login youssef123$$$');
+    }, 3000);
   });
 
   bot.on('end', () => {
