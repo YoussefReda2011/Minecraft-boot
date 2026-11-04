@@ -1,42 +1,33 @@
 const mineflayer = require('mineflayer');
 
-// إعدادات البوتين بأسماء مختلفة وفاصل زمني 5 ثواني
-const botsConfig = [
-  { username: 'youssef_gaming', delay: 0 },
-  //{ username: '', delay: 5000 }
-];
-
-function createBot(config) {
+function createBot() {
   const bot = mineflayer.createBot({
-    host: 'cubelife.qzz.io',
+    host: 'cubelife.qzz.io', // أو آي بي سيرفرك الأساسي
     port: 25565,
-    username: config.username,
-    version: '1.20.4' // إصدار مستقر وخفيف شغال مع ViaBackwards
+    username: 'youssef_gaming', // اسم البوت الواحد
+    version: '1.20.4', // إصدار مستقر وخفيف
+    physicsEnabled: false // قفلنا فيزياء الحركة عشان نوفر استهلاك المعالج وما يحصلش كراش
   });
 
   bot.on('spawn', () => {
-    console.log(`[+] البوت ${config.username} دخل السيرفر وثبت مكانه بسلام.`);
+    console.log('[+] تم دخول البوت السيرفر وثبت مكانه بسلام.');
     
+    // نستنى 4 ثواني لحد ما السيرفر يستقر وبعدها نبعت أمر تسجيل الدخول
     setTimeout(() => {
       bot.chat('/login youssef123$$$');
-      console.log(`[<] تم إرسال كلمة المرور للبوت ${config.username}.`);
+      console.log('[<] تم إرسال كلمة المرور بنجاح.');
     }, 4000);
   });
 
   bot.on('end', (reason) => {
-    console.log(`[-] انقطع اتصال البوت ${config.username} (${reason}). إعادة محاولة خلال 30 ثانية...`);
-    setTimeout(() => createBot(config), 30000);
+    console.log(`[-] انقطع اتصال البوت (${reason}). إعادة محاولة خلال 30 ثانية...`);
+    setTimeout(createBot, 30000); // 30 ثانية راحة للاستضافة عشان ماتضربش كراش
   });
 
   bot.on('error', (err) => {
-    // تجاهل الأخطاء العابرة للحفاظ على نظافة الكونسول
+    // تم كتم الأخطاء العابرة للحفاظ على نظافة الكونسول
   });
 }
 
-console.log('🚀 جاري إطلاق البوتين بنظام الإصدار القديم والفاصل الآمن...');
-
-botsConfig.forEach((config) => {
-  setTimeout(() => {
-    createBot(config);
-  }, config.delay);
-});
+console.log('🚀 جاري إطلاق بوت الـ AFK الواحد بنظام الأمان والمحافظة على المعالج...');
+createBot();
