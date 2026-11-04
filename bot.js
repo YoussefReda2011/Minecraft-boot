@@ -1,26 +1,42 @@
 const mineflayer = require('mineflayer');
 
-function createBot() {
+// إعدادات البوتين بأسماء مختلفة وفاصل زمني 5 ثواني
+const botsConfig = [
+  { username: 'youssef_gaming', delay: 0 },
+  //{ username: '', delay: 5000 }
+];
+
+function createBot(config) {
   const bot = mineflayer.createBot({
     host: 'cubelife.qzz.io',
     port: 25565,
-    username: 'youssef_gaming',
-    version: false
+    username: config.username,
+    version: '1.20.4' // إصدار مستقر وخفيف شغال مع ViaBackwards
   });
 
   bot.on('spawn', () => {
+    console.log(`[+] البوت ${config.username} دخل السيرفر وثبت مكانه بسلام.`);
+    
     setTimeout(() => {
       bot.chat('/login youssef123$$$');
-    }, 3000);
+      console.log(`[<] تم إرسال كلمة المرور للبوت ${config.username}.`);
+    }, 4000);
   });
 
-  bot.on('end', () => {
-    setTimeout(createBot, 5000);
+  bot.on('end', (reason) => {
+    console.log(`[-] انقطع اتصال البوت ${config.username} (${reason}). إعادة محاولة خلال 30 ثانية...`);
+    setTimeout(() => createBot(config), 30000);
   });
 
-  bot.on('error', () => {
-    setTimeout(createBot, 5000);
+  bot.on('error', (err) => {
+    // تجاهل الأخطاء العابرة للحفاظ على نظافة الكونسول
   });
 }
 
-createBot();
+console.log('🚀 جاري إطلاق البوتين بنظام الإصدار القديم والفاصل الآمن...');
+
+botsConfig.forEach((config) => {
+  setTimeout(() => {
+    createBot(config);
+  }, config.delay);
+});
